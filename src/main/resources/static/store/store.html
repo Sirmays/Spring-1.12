@@ -1,0 +1,51 @@
+<div>
+    <h2>Каталог Продуктов</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Название</td>
+            <td>Стоимость</td>
+            <td ng-show="isUserLoggedIn()">Удалить</td>
+            <td ng-show="isUserLoggedIn()">Обновить</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="p in productsPage.content">
+            <td>{{p.id}}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.price}}</td>
+            <td>
+                <button type="button" class="btn btn-primary" ng-click="deleteProduct(p)" ng-show="isUserLoggedIn()">Удалить</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" ng-click="navToEditProductPage(p.id)" ng-show="isUserLoggedIn()">Обновить</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" ng-click="addToCart(p)" ng-show="isUserLoggedIn()">Купить</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" aria-label="Previous" ng-click="prevPage()">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+
+            <li class="page-item" ng-repeat="pageIndex in paginationArray">
+                <button class="page-link" ng-click="loadProducts(pageIndex)">{{pageIndex}}</button>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link" aria-label="Next" ng-click="nextPage()">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
